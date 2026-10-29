@@ -1,4 +1,65 @@
-/* ================================================================
+/* PASSWORD GATE */
+const BIRTHDAY_PASSWORD = '1611';
+const AUTH_STORAGE_KEY = 'birthdaySiteUnlocked';
+
+function createPasswordGate() {
+  if (sessionStorage.getItem(AUTH_STORAGE_KEY) === 'true') return;
+
+  document.body.classList.add('auth-locked');
+
+  const gate = document.createElement('div');
+  gate.id = 'passwordGate';
+  gate.className = 'password-gate';
+
+  gate.innerHTML = `
+    <div class="password-card">
+      <div class="password-heart">💌</div>
+      <p class="password-kicker">a little surprise for you</p>
+      <h2>Enter the secret password</h2>
+      <p class="password-hint">
+        Only someone special can open this birthday gift ✨
+      </p>
+
+      <form id="passwordForm" class="password-form">
+        <input
+          id="birthdayPassword"
+          type="password"
+          placeholder="type the password..."
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit" class="nav-btn">
+          unlock my surprise 💖
+        </button>
+
+        <p id="passwordError" class="password-error"></p>
+      </form>
+    </div>
+  `;
+
+  document.body.appendChild(gate);
+
+  const form = document.getElementById('passwordForm');
+  const input = document.getElementById('birthdayPassword');
+  const error = document.getElementById('passwordError');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    if (input.value.trim() === BIRTHDAY_PASSWORD) {
+      sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
+      document.body.classList.remove('auth-locked');
+      gate.remove();
+    } else {
+      error.textContent = 'Sai mật khẩu rồi, thử lại nhé 💭';
+      input.value = '';
+      input.focus();
+    }
+  });
+}
+
+createPasswordGate();/* ================================================================
    PAGE-TO-PAGE BLUR TRANSITION — jalan di SEMUA halaman
 ================================================================= */
 (function(){
