@@ -1040,3 +1040,83 @@ footer{
   html{ scroll-behavior: auto; }
   body{ transition: none; }
 }
+/* PASSWORD GATE */
+
+body.auth-locked > *:not(#passwordGate) {
+  visibility: hidden;
+}
+
+.password-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 20%, #ffd6e8, transparent 35%),
+    radial-gradient(circle at 80% 80%, #e6d9ff, transparent 35%),
+    linear-gradient(145deg, #fff8fc, #eef7ff);
+}
+
+.password-card {
+  width: min(100%, 430px);
+  padding: 38px 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 30px;
+  box-shadow: 0 24px 70px rgba(151, 117, 165, 0.25);
+  backdrop-filter: blur(14px);
+}
+
+.password-heart {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.password-kicker {
+  color: #ff9fc7;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.password-card h2 {
+  margin-top: 8px;
+  color: #5b4a5a;
+  font-size: 30px;
+}
+
+.password-hint {
+  margin: 12px auto 22px;
+  color: #8a7a91;
+  line-height: 1.6;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.password-form input {
+  width: 100%;
+  padding: 15px 18px;
+  border: 2px solid #ffd6e8;
+  border-radius: 16px;
+  outline: none;
+  color: #5b4a5a;
+  font-size: 16px;
+  text-align: center;
+}
+
+.password-form input:focus {
+  border-color: #ff9fc7;
+  box-shadow: 0 0 0 4px rgba(255, 159, 199, 0.2);
+}
+
+.password-error {
+  min-height: 22px;
+  color: #d7648f;
+  font-size: 14px;
+}
