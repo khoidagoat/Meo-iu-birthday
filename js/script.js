@@ -74,7 +74,28 @@ let wrongAttempts = 0;
       sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
       document.body.classList.remove('auth-locked');
       gate.remove();
-    } else {
+    }if (input.value.trim() === BIRTHDAY_PASSWORD) {
+  sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
+
+  // Đổi màn hình mật khẩu thành lời nhắn chuyển cảnh.
+  gate.innerHTML = `
+    <div class="unlock-message" role="status">
+      <span class="unlock-heart">💖</span>
+      <p>giỏi lm bé iu, biết e sẽ lm đc ma</p>
+    </div>
+  `;
+
+  // Giữ lời nhắn 2,5 giây rồi mở nội dung bên trong.
+  setTimeout(() => {
+    document.body.classList.remove('auth-locked');
+    gate.classList.add('unlock-fade-out');
+
+    setTimeout(() => {
+      gate.remove();
+      document.querySelector('#hero .nav-btn')?.focus();
+    }, 800);
+  }, 2500);
+} else {
   wrongAttempts += 1;
 
   // Lần 1 → ảnh 1; lần 2 → ảnh 2; lần 3 trở đi → ảnh 3.
