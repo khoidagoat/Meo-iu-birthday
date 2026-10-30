@@ -4,15 +4,15 @@ const AUTH_STORAGE_KEY = 'birthdaySiteUnlocked';
 const WRONG_PASSWORD_REACTIONS = [
   {
     message: 'Hic sai mất ùi, thử lại iu bé iu🥺',
-    image: 'assets/cat-sad-1.jpg'
+    image: 'assets/sad-cat-1.jpg'
   },
   {
     message: 'Ơ kìa, meo iu quên mất mật khẩu của tụi mình rồi hả 😿',
-    image: 'assets/cat-sad-2.jpg'
+    image: 'assets/sad-cat-2.jpg'
   },
   {
     message: 'Hửmmm, bạn là aii! Có phải "meo iu" của tui hong tr?! 😭',
-    image: 'assets/cat-sad-3.jpg'
+    image: 'assets/sad-cat-3.jpg'
   }
 ];
 function createPasswordGate() {
