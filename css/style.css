@@ -1120,3 +1120,20 @@ body.auth-locked > *:not(#passwordGate) {
   color: #d7648f;
   font-size: 14px;
 }
+.password-reaction {
+  margin-top: 8px;
+}
+
+.password-reaction img {
+  display: block;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin: 0 auto 12px;
+  border-radius: 18px;
+}
+
+.password-reaction .password-error {
+  margin: 0;
+  line-height: 1.6;
+}
