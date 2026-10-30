@@ -1137,3 +1137,57 @@ body.auth-locked > *:not(#passwordGate) {
   margin: 0;
   line-height: 1.6;
 }
+/* Lời nhắn sau khi mở khóa */
+.unlock-message {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  animation: unlock-message-in 0.8s ease both;
+}
+
+.unlock-heart {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 38px;
+}
+
+.unlock-message p {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: 700;
+  line-height: 1.7;
+  color: #5b4a5a;
+}
+
+.password-gate.unlock-fade-out {
+  pointer-events: none;
+  animation: unlock-screen-out 0.8s ease forwards;
+}
+
+@keyframes unlock-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes unlock-screen-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unlock-message,
+  .password-gate.unlock-fade-out {
+    animation-duration: 0.01s;
+  }
+}
