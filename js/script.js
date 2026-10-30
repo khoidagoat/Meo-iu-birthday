@@ -46,7 +46,15 @@ function createPasswordGate() {
           unlock my surprise 💖
         </button>
 
-        <p id="passwordError" class="password-error"></p>
+        <div id="passwordReaction" class="password-reaction" hidden>
+  <img id="passwordCat" alt="Mèo buồn vì nhập sai mật khẩu">
+  <p
+    id="passwordError"
+    class="password-error"
+    role="alert"
+    aria-live="polite"
+  ></p>
+</div>
       </form>
     </div>
   `;
@@ -56,7 +64,9 @@ function createPasswordGate() {
   const form = document.getElementById('passwordForm');
   const input = document.getElementById('birthdayPassword');
   const error = document.getElementById('passwordError');
-
+  const reaction = document.getElementById('passwordReaction');
+const cat = document.getElementById('passwordCat');
+let wrongAttempts = 0;
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -65,10 +75,23 @@ function createPasswordGate() {
       document.body.classList.remove('auth-locked');
       gate.remove();
     } else {
-      error.textContent = 'Sai mật khẩu rồi, thử lại nhé 💭';
-      input.value = '';
-      input.focus();
-    }
+  wrongAttempts += 1;
+
+  // Lần 1 → ảnh 1; lần 2 → ảnh 2; lần 3 trở đi → ảnh 3.
+  const reactionIndex = Math.min(
+    wrongAttempts - 1,
+    WRONG_PASSWORD_REACTIONS.length - 1
+  );
+
+  const currentReaction = WRONG_PASSWORD_REACTIONS[reactionIndex];
+
+  cat.src = currentReaction.image;
+  error.textContent = currentReaction.message;
+  reaction.hidden = false;
+
+  input.value = '';
+  input.focus();
+}
   });
 }
 
