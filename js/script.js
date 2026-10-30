@@ -1,7 +1,20 @@
 /* PASSWORD GATE */
 const BIRTHDAY_PASSWORD = '1611';
 const AUTH_STORAGE_KEY = 'birthdaySiteUnlocked';
-
+const WRONG_PASSWORD_REACTIONS = [
+  {
+    message: 'Hic sai mất ùi, thử lại iu bé iu🥺',
+    image: 'assets/cat-sad-1.gif'
+  },
+  {
+    message: 'Ơ kìa, meo iu quên mất mật khẩu của tụi mình rồi hả 😿',
+    image: 'assets/cat-sad-2.gif'
+  },
+  {
+    message: 'Hửmmm, bạn là aii! Có phải "meo iu" của tui hong tr?! 😭',
+    image: 'assets/cat-sad-3.gif'
+  }
+];
 function createPasswordGate() {
   if (sessionStorage.getItem(AUTH_STORAGE_KEY) === 'true') return;
 
